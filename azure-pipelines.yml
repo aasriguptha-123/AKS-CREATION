@@ -18,6 +18,7 @@ steps:
 
 - script: terraform init -upgrade
   displayName: Terraform Init 
+  workingDirectory: ACR
   env: 
     ARM_CLIENT_ID: $(client_id) 
     ARM_CLIENT_SECRET: $(client_secret) 
@@ -25,7 +26,8 @@ steps:
     ARM_SUBSCRIPTION_ID: $(subscription_id) 
 
 - script: terraform plan
-  displayName: Terraform Plan 
+  displayName: Terraform Plan
+  workingDirectory: ACR 
   env: 
     ARM_CLIENT_ID: $(client_id) 
     ARM_CLIENT_SECRET: $(client_secret) 
@@ -34,6 +36,7 @@ steps:
   
 - script: terraform apply -auto-approve
   displayName: Terraform Apply 
+  workingDirectory: ACR
   env: 
     ARM_CLIENT_ID: $(client_id) 
     ARM_CLIENT_SECRET: $(client_secret) 
