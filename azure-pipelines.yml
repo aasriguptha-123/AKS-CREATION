@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  name: Default
+
+variables:
+  - group: Terraform variables
+
+steps:
+- task: TerraformInstaller@1
+  inputs:
+      terraformVersion: '1.5.0'
+
+- script: terraform init -upgrade
+  displayName: Terraform Init 
+  env: 
+    ARM_CLIENT_ID: $(client_id) 
+    ARM_CLIENT_SECRET: $(client_secret) 
+    ARM_TENANT_ID: $(tenant_id) 
+    ARM_SUBSCRIPTION_ID: $(subscription_id) 
+
+- script: terraform plan
+  displayName: Terraform Plan 
+  env: 
+    ARM_CLIENT_ID: $(client_id) 
+    ARM_CLIENT_SECRET: $(client_secret) 
+    ARM_TENANT_ID: $(tenant_id) 
+    ARM_SUBSCRIPTION_ID: $(subscription_id) 
+  
+- script: terraform apply -auto-approve
+  displayName: Terraform Apply 
+  env: 
+    ARM_CLIENT_ID: $(client_id) 
+    ARM_CLIENT_SECRET: $(client_secret) 
+    ARM_TENANT_ID: $(tenant_id) 
+    ARM_SUBSCRIPTION_ID: $(subscription_id) 
