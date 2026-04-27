@@ -26,9 +26,6 @@ variable cluster_name{
     type = string
 }
 
-variable dns_name{
-    type = string
-}
 
 variable agent_pools{
   type = object({

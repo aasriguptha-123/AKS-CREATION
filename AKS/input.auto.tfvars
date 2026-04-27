@@ -1,6 +1,6 @@
 resource_group = "aksdemocluster-rg"
 
-azure_region = "austrliaeast"
+azure_region = "australiaeast"
 
 aks_vnet_name = "aksvnet"
 
@@ -14,7 +14,7 @@ cluster_name = "aksdemocluster"
 
 agent_pools = {
   name            = "agentpool"
-  count           = 2
-  vm_size         = "Standard_D2_v2"
+  count           = 1
+  vm_size         = "Standard_D2ps_v6"
   os_disk_size_gb = "30"
 }
