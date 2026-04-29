@@ -74,5 +74,5 @@ stages:
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
-                $(containerRegistry)/$(imageRepository): $(Build.BuildId)
+                $(containerRegistry)/$(imageRepository):$(Build.BuildId)
 
