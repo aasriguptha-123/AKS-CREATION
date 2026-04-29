@@ -37,11 +37,16 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
+        arguments: '--platform linux/amd64'
         tags: |
            $(Build.BuildId)
 
     - upload: manifests
       artifact: manifests
+    - script: |
+        docker run --rm aksdemoclusteracr.azurecr.io/webapp:$(Build.BuildId) uname -m
+      displayName: Check image architecture
+
 
 - stage: Deploy
   displayName: Deploy stage
