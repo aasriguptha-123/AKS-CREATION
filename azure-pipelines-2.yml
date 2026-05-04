@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: 'c760cfc1-5ba8-4e47-a347-0213b83ad440'
   imageRepository: 'php-app'
   containerRegistry: 'aksdemoclusteracr.azurecr.io'
-  dockerfilePath: '**/AKS-HPA/Dockerfile'
+  dockerfilePath: 'AKS-HPA/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'aksdemoclusteracra9c0-auth'
 
@@ -70,8 +70,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                AKS-HPA/kube-manifests/php-deployment.yaml
+                AKS-HPA/kube-manifests/apache-hpa.yaml               
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
