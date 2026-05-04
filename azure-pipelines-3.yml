@@ -40,6 +40,10 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - script: |
+       echo "FILES:"
+        ls -R
+      displayName: DEBUG FILES
 
     - upload: manifests
       artifact: manifests
@@ -70,8 +74,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                AKS-HPA/kube-manifests/php-deployment.yaml
-                AKS-HPA/kube-manifests/apache-hpa.yaml
+                AKS-CREATION/AKS-HPA/kube-manifests/php-deployment.yaml
+                AKS-CREATION/AKS-HPA/kube-manifests/apache-hpa.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
