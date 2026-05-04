@@ -70,7 +70,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                AKS-HPA/kube-manifests/php-deployment.yml
+                AKS-HPA/kube-manifests/php-deployment.yaml
                 AKS-HPA/kube-manifests/apache-hpa.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
