@@ -11,7 +11,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '0d5ba92d-7be4-4023-997a-1db1074a34c3'
-  imageRepository: 'aasrigupthaakscreation'
+  imageRepository: 'php-app'
   containerRegistry: 'aksdemoclusteracr.azurecr.io'
   dockerfilePath: '**/AKS-HPA/DockerFile'
   tag: '$(Build.BuildId)'
@@ -40,8 +40,8 @@ stages:
         tags: |
           $(Build.BuildId)
 
-    - upload: manifests
-      artifact: manifests
+    # - upload: manifests
+    #   artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage
@@ -69,7 +69,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/AKS-HPA/php-deployment.yml
+                AKS-HPA/php-deployment.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
