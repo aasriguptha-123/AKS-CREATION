@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-app
+  template:
+    metadata:
+      labels:
+        app: php-app
+    spec:
+      containers:
+      - name: php-app
+        image: aksdemoclusteracr.azurecr.io/php-app
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+          requests:
+            cpu: 100m
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-service
+  labels:
+    run: php-apache
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: php-app

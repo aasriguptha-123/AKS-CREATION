@@ -1,0 +1,20 @@
+# first build the image using docker command
+
+az acr build --image php-apache --registry aksdemoclusteracr --file DockerFile
+
+# Create deployment and Service using yaml file
+
+kubectl apply -f php-deployment.yaml
+
+# Create a hpa yaml
+
+kubectl apply -f apache-hpa.yaml
+
+# Increase the load
+
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+
+# Monitor the scaling
+
+kubectl get hpa php-apache --watch
+
