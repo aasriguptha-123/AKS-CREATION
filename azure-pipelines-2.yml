@@ -38,10 +38,10 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
-          $(tag)
+          $(Build.BuildId)
 
-    - upload: manifests
-      artifact: manifests
+    - upload: manifests1
+      artifact: manifests1
 
 - stage: Deploy
   displayName: Deploy stage
@@ -69,10 +69,10 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                $(Pipeline.Workspace)/manifests1/deployment.yml
+                $(Pipeline.Workspace)/manifests1/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
+                $(containerRegistry)/$(imageRepository):$(Build.BuildId)
 
