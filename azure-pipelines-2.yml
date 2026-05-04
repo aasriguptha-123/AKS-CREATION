@@ -69,7 +69,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                AKS-HPA/php-deployment.yml
+                AKS-HPA/php-deployment.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
