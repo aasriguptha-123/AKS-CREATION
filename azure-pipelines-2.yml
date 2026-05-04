@@ -42,6 +42,10 @@ stages:
 
     # - upload: manifests
     #   artifact: manifests
+    - script: |
+        echo "Files in repo:"
+        ls -R
+      displayName: Debug repo structure
 
 - stage: Deploy
   displayName: Deploy stage
