@@ -11,7 +11,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '08891040-c649-4d02-abf3-0be08bda7b0d'
-  imageRepository: 'phpapp'
+  imageRepository: 'php-app'
   containerRegistry: 'aksdemoclusteracr.azurecr.io'
   dockerfilePath: 'AKS-HPA/Dockerfile'
   tag: '$(Build.BuildId)'
