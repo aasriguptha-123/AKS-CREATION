@@ -44,6 +44,8 @@ stages:
           ls -R AKS-HPA
           echo "Present working directory"
           pwd
+          echo "Directory details"
+          ls -l
           echo "Inside kube-manifests:"
           ls -l AKS-HPA/kube-manifests
       displayName: DEBUG DEEP
