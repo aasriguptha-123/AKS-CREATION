@@ -42,9 +42,11 @@ stages:
     - script: |
           echo "Inside AKS-HPA:"
           ls -R AKS-HPA
+          echo "Present working directory"
+          pwd
           echo "Inside kube-manifests:"
           ls -l AKS-HPA/kube-manifests
-          displayName: DEBUG DEEP
+      displayName: DEBUG DEEP
 
     - upload: manifests
       artifact: manifests
