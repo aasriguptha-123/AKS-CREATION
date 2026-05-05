@@ -50,8 +50,6 @@ stages:
           ls -l AKS-HPA/kube-manifests
       displayName: DEBUG DEEP
 
-    - upload: manifests
-      artifact: manifests
       
 - stage: Deploy
   displayName: Deploy stage
@@ -79,8 +77,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                AKS-HPA/kube-manifests/php-deployment.yaml
+                AKS-HPA/kube-manifests/apache-hpa.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
