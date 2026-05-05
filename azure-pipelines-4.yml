@@ -79,8 +79,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/AKS-HPA/kube-manifests/php-deployment.yaml
-                $(Pipeline.Workspace)/AKS-HPA/kube-manifests/apache-hpa.yaml
+                $(Pipeline.Workspace)/manifests/deployment.yml
+                $(Pipeline.Workspace)/manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
